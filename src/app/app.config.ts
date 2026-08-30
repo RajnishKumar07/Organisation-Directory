@@ -5,7 +5,9 @@ import { routes } from './app.routes';
 import { organisationMockApiInterceptor } from './core/interceptors/organisation-mock-api-interceptor-interceptor';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
+import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
 
+ModuleRegistry.registerModules([AllCommunityModule]);
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),

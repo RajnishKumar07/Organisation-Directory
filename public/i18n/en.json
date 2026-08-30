@@ -1,1 +1,31 @@
-{}
+{
+  "organisations": {
+    "title": "Organisation Directory",
+    "description": "Search and manage organisations",
+    "actions": {
+      "add": "Add organisation",
+      "retry": "Retry",
+      "loadMore": "Load more"
+    },
+    "filters": {
+      "searchLabel": "Search",
+      "searchPlaceholder": "Search organisations...",
+      "statusLabel": "Status",
+      "allStatuses": "All statuses"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "suspended": "Suspended"
+    },
+    "states": {
+      "loading": "Loading organisations...",
+      "error": "Failed to load organisations.",
+      "empty": "No organisations found.",
+      "gridPlaceholder": "Organisation grid"
+    },
+    "results": {
+      "count": "Showing {{shown}}/{{total}} organisations"
+    }
+  }
+}

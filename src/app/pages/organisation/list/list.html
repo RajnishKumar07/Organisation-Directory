@@ -1,1 +1,130 @@
-<p>list works!</p>
+<div class="container-fluid py-4">
+  <!-- Header -->
+  <div
+    class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4"
+  >
+    <div>
+      <h1 class="h3 mb-1">
+        {{ 'organisations.title' | transloco }}
+      </h1>
+
+      <p class="text-muted mb-0">
+        {{ 'organisations.description' | transloco }}
+      </p>
+    </div>
+
+    <button type="button" class="btn btn-primary">
+      {{ 'organisations.actions.add' | transloco }}
+    </button>
+  </div>
+
+  <!-- Filters -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <div class="row g-3 align-items-end">
+        <!-- Search -->
+        <div class="col-12 col-md-8">
+          <label for="organisation-search" class="form-label">
+            {{ 'organisations.filters.searchLabel' | transloco }}
+          </label>
+
+          <input
+            id="organisation-search"
+            type="search"
+            class="form-control"
+            [value]="search()"
+            [placeholder]="'organisations.filters.searchPlaceholder' | transloco"
+            (input)="setSearch($any($event.target).value)"
+          />
+        </div>
+
+        <!-- Status -->
+        <div class="col-12 col-md-4">
+          <label for="organisation-status" class="form-label">
+            {{ 'organisations.filters.statusLabel' | transloco }}
+          </label>
+
+          <select
+            id="organisation-status"
+            class="form-select"
+            [value]="status()"
+            (change)="setStatus($any($event.target).value)"
+          >
+            <option value="all">
+              {{ 'organisations.filters.allStatuses' | transloco }}
+            </option>
+
+            <option value="active">
+              {{ 'organisations.status.active' | transloco }}
+            </option>
+
+            <option value="inactive">
+              {{ 'organisations.status.inactive' | transloco }}
+            </option>
+
+            <option value="suspended">
+              {{ 'organisations.status.suspended' | transloco }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  @if (organisationsResource.error(); as error) {
+    <div
+      class="alert alert-danger d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3"
+      role="alert"
+    >
+      <span>
+        {{ errorMessage() }}
+      </span>
+
+      <button type="button" class="btn btn-outline-danger" (click)="organisationsResource.reload()">
+        {{ 'organisations.actions.retry' | transloco }}
+      </button>
+    </div>
+  } @else if (page() === 1 && organisationsResource.isLoading()) {
+    <div
+      class="d-flex justify-content-center align-items-center py-5"
+      role="status"
+      [attr.aria-label]="'organisations.states.loading' | transloco"
+    >
+      <div class="spinner-border text-primary" aria-hidden="true"></div>
+
+      <span class="visually-hidden">
+        {{ 'organisations.states.loading' | transloco }}
+      </span>
+    </div>
+  } @else if (rowData().length || organisationsResource.hasValue()) {
+    @let response = organisationsResource.value();
+
+    <ag-grid-angular
+      style="height: 20rem"
+      [rowData]="rowData()"
+      [columnDefs]="columnDefs"
+      (bodyScrollEnd)="onBodyScrollEnd($event)"
+      [getRowId]="getRowId"
+    />
+
+    <!-- Empty state -->
+    @if (response?.data.length === 0) {
+      <div class="alert alert-secondary text-center mt-3" role="status">
+        {{ 'organisations.states.empty' | transloco }}
+      </div>
+    }
+    <!-- Result summary -->
+    <div class="d-flex justify-content-center align-items-center my-3">
+      <span class="text-muted">
+        {{
+          'organisations.results.count'
+            | transloco
+              : {
+                  shown: rowData().length,
+                  total: response?.total || 0,
+                }
+        }}
+      </span>
+    </div>
+  }
+</div>
