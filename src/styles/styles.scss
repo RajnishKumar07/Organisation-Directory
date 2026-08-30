@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+@use "tokens" as tokens;
+
+
+/*
+ * Expose application tokens as CSS custom properties.
+ *
+ * Components can now use:
+ *
+ * var(--brand-color)
+ * var(--space-md)
+ * etc.
+ */
+
+:root {
+  --brand-color: #{tokens.$brand-color};
+  --brand-color-hover: #{tokens.$brand-color-hover};
+
+  --text-color: #{tokens.$text-color};
+  --text-muted: #{tokens.$text-muted};
+
+  --background-color: #{tokens.$background-color};
+  --surface-color: #{tokens.$surface-color};
+
+  --border-color: #{tokens.$border-color};
+
+  --space-sm: #{tokens.$space-sm};
+  --space-md: #{tokens.$space-md};
+  --space-lg: #{tokens.$space-lg};
+
+  --radius-md: #{tokens.$radius-md};
+}
+
+
+/*
+ * Global application styles.
+ */
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}

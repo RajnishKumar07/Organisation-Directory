@@ -41,3 +41,12 @@ The interceptor contains more logic than a typical production interceptor becaus
 In a real application, the filtering, pagination and rate limiting would normally be handled by the backend rather than by an Angular interceptor.
 
 This approach is specifically chosen because the assessment requires no backend and asks for the fixture to be served locally or through a mock server.
+
+
+
+
+
+---
+### AI(ChatGPT) Uses:
+- To generate static organisations.json
+- To create interceptor to simulate api.
