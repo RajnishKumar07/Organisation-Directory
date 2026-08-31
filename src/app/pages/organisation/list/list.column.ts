@@ -1,7 +1,8 @@
 import { DatePipe } from '@angular/common';
-import type { ColDef } from 'ag-grid-community';
+import type { ColDef, ICellRendererParams } from 'ag-grid-community';
 
 import type { RawOrganisation } from '../../../shared/models/organisation.model';
+import { StatusCellComponent } from '../../../shared/components/cell-renderers/status-cell';
 
 const datePipe = new DatePipe('en-GB');
 
@@ -28,19 +29,12 @@ export const COLUMN_DEFS: ColDef<RawOrganisation>[] = [
     field: 'status',
     headerName: 'Status',
     flex: 1,
-
-    // Not required to be sortable
     sortable: false,
 
-    valueFormatter: (params) => {
-      const status = safeString(params.value);
-
-      if (!status) {
-        return '-';
-      }
-
-      return status.charAt(0).toUpperCase() + status.slice(1).toLowerCase();
-    },
+    cellRenderer: StatusCellComponent,
+    cellRendererParams: (params: ICellRendererParams) => ({
+      status: params.value,
+    }),
   },
 
   {

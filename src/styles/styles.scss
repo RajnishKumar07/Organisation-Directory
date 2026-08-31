@@ -29,6 +29,15 @@
   --space-lg: #{tokens.$space-lg};
 
   --radius-md: #{tokens.$radius-md};
+
+
+ --status-dot-size: #{tokens.$status-dot-size};
+
+  --status-active-color: #{tokens.$status-active-color};
+  --status-inactive-color: #{tokens.$status-inactive-color};
+  --status-suspended-color: #{tokens.$status-suspended-color};
+  --status-unknown-color: #{tokens.$status-unknown-color};
+
 }
 
 
@@ -45,4 +54,28 @@ body {
 body {
   background-color: var(--background-color);
   color: var(--text-color);
+}
+
+
+.status-dot {
+  display: inline-block;
+  width: var(--status-dot-size);
+  height: var(--status-dot-size);
+  border-radius: 50%;
+
+  &--active {
+    background-color: var(--status-active-color);
+  }
+
+  &--inactive {
+    background-color: var(--status-inactive-color);
+  }
+
+  &--suspended {
+    background-color: var(--status-suspended-color);
+  }
+
+  &--unknown {
+    background-color: var(--status-unknown-color);
+  }
 }
