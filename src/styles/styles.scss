@@ -79,3 +79,8 @@ body {
     background-color: var(--status-unknown-color);
   }
 }
+
+.required::after {
+  content: ' *';
+  color: red;
+}

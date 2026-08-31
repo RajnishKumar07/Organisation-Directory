@@ -1,3 +1,5 @@
+import { FormControl } from '@angular/forms';
+
 export type OrganisationStatus = 'active' | 'inactive' | 'suspended';
 
 /*
@@ -60,3 +62,10 @@ export interface ApiErrorResponse {
 }
 
 export type OrganisationStatusFilter = OrganisationStatus | 'all';
+
+export interface CreateOrganisationForm {
+  name: FormControl<string>;
+  status: FormControl<OrganisationStatus | ''>;
+  ownerEmail: FormControl<string>;
+  memberCount: FormControl<number | null>;
+}

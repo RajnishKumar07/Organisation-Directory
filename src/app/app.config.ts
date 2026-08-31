@@ -6,13 +6,16 @@ import { organisationMockApiInterceptor } from './core/interceptors/organisation
 import { TranslocoHttpLoader } from './transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
 import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
+import { organisationNameCheckInterceptor } from './core/interceptors/organisation-name-check.interceptor';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([organisationMockApiInterceptor])),
+    provideHttpClient(
+      withInterceptors([organisationMockApiInterceptor, organisationNameCheckInterceptor]),
+    ),
 
     provideTransloco({
       config: {

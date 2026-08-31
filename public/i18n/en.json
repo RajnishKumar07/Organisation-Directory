@@ -26,6 +26,53 @@
     },
     "results": {
       "count": "Showing {{shown}}/{{total}} organisations"
+    },
+    "create": {
+      "title": "Add organisation",
+      "description": "Create a new organisation",
+
+      "fields": {
+        "name": {
+          "label": "Name",
+          "placeholder": "Enter organisation name"
+        },
+        "status": {
+          "label": "Status",
+          "placeholder": "Select status"
+        },
+        "ownerEmail": {
+          "label": "Owner email",
+          "placeholder": "Enter owner email"
+        },
+        "memberCount": {
+          "label": "Member count",
+          "placeholder": "Enter member count"
+        }
+      },
+
+      "validation": {
+        "name": {
+          "required": "Name is required.",
+          "minLength": "Name must be at least 3 characters.",
+          "maxLength": "Name cannot exceed 80 characters.",
+          "notUnique": "An organisation with this name already exists."
+        },
+        "status": {
+          "required": "Status is required."
+        },
+        "ownerEmail": {
+          "required": "Owner email is required.",
+          "invalid": "Enter a valid email address."
+        },
+        "memberCount": {
+          "min": "Member count cannot be negative."
+        }
+      },
+
+      "actions": {
+        "cancel": "Cancel",
+        "submit": "Create organisation"
+      }
     }
   }
 }

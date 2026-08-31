@@ -53,7 +53,7 @@ const requestTimestamps: number[] = [];
  */
 
 const isOrganisationListRequest = (url: string): boolean =>
-  url.toLowerCase().startsWith('/api/organisations');
+  url.toLowerCase() === '/api/organisations';
 
 /*
  * ============================================================

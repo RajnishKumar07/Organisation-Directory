@@ -10,11 +10,11 @@ import { TranslocoPipe } from '@jsverse/transloco';
 import { AgGridAngular } from 'ag-grid-angular'; // Angular Data Grid Component
 import type { BodyScrollEndEvent, ColDef, GetRowIdParams } from 'ag-grid-community'; // Column Definition Type Interface
 import { COLUMN_DEFS } from './list.column';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-list',
-  imports: [TranslocoPipe, AgGridAngular],
+  imports: [TranslocoPipe, AgGridAngular, RouterLink],
   templateUrl: './list.html',
   styleUrl: './list.scss',
 })

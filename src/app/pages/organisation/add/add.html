@@ -1,0 +1,157 @@
+<div class="container py-4">
+  <!-- Header -->
+  <div class="mb-4">
+    <h1 class="h3 mb-1">
+      {{ 'organisations.create.title' | transloco }}
+    </h1>
+
+    <p class="text-muted mb-0">
+      {{ 'organisations.create.description' | transloco }}
+    </p>
+  </div>
+
+  <!-- Form -->
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="organisationForm" (ngSubmit)="submit()" novalidate>
+        <!-- Name -->
+        <div class="mb-3">
+          <label for="organisation-name" class="form-label required">
+            {{ 'organisations.create.fields.name.label' | transloco }}
+          </label>
+
+          <input
+            id="organisation-name"
+            type="text"
+            class="form-control"
+            formControlName="name"
+            [class.is-invalid]="name.invalid && name.touched"
+            [placeholder]="'organisations.create.fields.name.placeholder' | transloco"
+          />
+
+          @if (name.hasError('required') && name.touched) {
+            <div class="invalid-feedback">
+              {{ 'organisations.create.validation.name.required' | transloco }}
+            </div>
+          }
+
+          @if (name.hasError('minlength') && name.touched) {
+            <div class="invalid-feedback">
+              {{ 'organisations.create.validation.name.minLength' | transloco }}
+            </div>
+          }
+
+          @if (name.hasError('maxlength') && name.touched) {
+            <div class="invalid-feedback">
+              {{ 'organisations.create.validation.name.maxLength' | transloco }}
+            </div>
+          }
+
+          @if (name.hasError('notUnique') && name.touched) {
+            <div class="invalid-feedback">
+              {{ 'organisations.create.validation.name.notUnique' | transloco }}
+            </div>
+          }
+        </div>
+
+        <!-- Status -->
+        <div class="mb-3">
+          <label for="organisation-status" class="form-label required">
+            {{ 'organisations.create.fields.status.label' | transloco }}
+          </label>
+
+          <select
+            id="organisation-status"
+            class="form-select"
+            formControlName="status"
+            [class.is-invalid]="status.invalid && status.touched"
+          >
+            <option value="">
+              {{ 'organisations.create.fields.status.placeholder' | transloco }}
+            </option>
+
+            <option value="active">
+              {{ 'organisations.status.active' | transloco }}
+            </option>
+
+            <option value="inactive">
+              {{ 'organisations.status.inactive' | transloco }}
+            </option>
+
+            <option value="suspended">
+              {{ 'organisations.status.suspended' | transloco }}
+            </option>
+          </select>
+
+          @if (status.hasError('required') && status.touched) {
+            <div class="invalid-feedback">
+              {{ 'organisations.create.validation.status.required' | transloco }}
+            </div>
+          }
+        </div>
+
+        <!-- Owner Email -->
+        <div class="mb-3">
+          <label for="organisation-owner-email" class="form-label required">
+            {{ 'organisations.create.fields.ownerEmail.label' | transloco }}
+          </label>
+
+          <input
+            id="organisation-owner-email"
+            type="email"
+            class="form-control"
+            formControlName="ownerEmail"
+            [class.is-invalid]="ownerEmail.invalid && ownerEmail.touched"
+            [placeholder]="'organisations.create.fields.ownerEmail.placeholder' | transloco"
+          />
+
+          @if (ownerEmail.hasError('required') && ownerEmail.touched) {
+            <div class="invalid-feedback">
+              {{ 'organisations.create.validation.ownerEmail.required' | transloco }}
+            </div>
+          }
+
+          @if (ownerEmail.hasError('email') && ownerEmail.touched) {
+            <div class="invalid-feedback">
+              {{ 'organisations.create.validation.ownerEmail.invalid' | transloco }}
+            </div>
+          }
+        </div>
+
+        <!-- Member Count -->
+        <div class="mb-4">
+          <label for="organisation-member-count" class="form-label">
+            {{ 'organisations.create.fields.memberCount.label' | transloco }}
+          </label>
+
+          <input
+            id="organisation-member-count"
+            type="number"
+            min="0"
+            class="form-control"
+            formControlName="memberCount"
+            [class.is-invalid]="memberCount.invalid && memberCount.touched"
+            [placeholder]="'organisations.create.fields.memberCount.placeholder' | transloco"
+          />
+
+          @if (memberCount.hasError('min') && memberCount.touched) {
+            <div class="invalid-feedback">
+              {{ 'organisations.create.validation.memberCount.min' | transloco }}
+            </div>
+          }
+        </div>
+
+        <!-- Actions -->
+        <div class="d-flex justify-content-end gap-2">
+          <button type="button" class="btn btn-outline-secondary" routerLink="../">
+            {{ 'organisations.create.actions.cancel' | transloco }}
+          </button>
+
+          <button type="submit" class="btn btn-primary">
+            {{ 'organisations.create.actions.submit' | transloco }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
